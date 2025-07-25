@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-8 text-center">Your Cart</h1>
+    {% if cart_items %}
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {% for item in cart_items %}
+        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 flex flex-col items-center">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.pr_name }}" class="w-32 h-32 object-cover rounded mb-4">
+            <h2 class="text-xl font-semibold mb-2">{{ item.product.pr_name }}</h2>
+            <p class="mb-2">Price: ₹{{ item.product.price }}</p>
+            <p class="mb-2">Quantity: {{ item.quantity }}</p>
+            <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Remove</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-8 text-right">
+        <h2 class="text-2xl font-bold">Total: ₹{{ total_price }}</h2>
+        <a href="{% url 'checkout' %}" class="bg-green-500 text-white px-6 py-3 rounded mt-4 inline-block">Checkout</a>
+    </div>
+    {% else %}
+    <p class="text-center text-lg">Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
