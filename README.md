@@ -1,6 +1,6 @@
 # ChazeFashion Product Catalog
 
-**[Website link](https://productcatlog-2-ho49.onrender.com/)**
+**[Website link](https://rb.gy/msoggz)**
 
 **Note:** This repository is part of a class project for academic purposes.
 
